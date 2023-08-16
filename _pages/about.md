@@ -12,8 +12,8 @@ redirect_from:
 <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_gzu3lnli.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; float: right;"  loop  autoplay></lottie-player>
 
 
-I'm a researcher at the Department of Physics and Astronomy at the University of Florence, Italy. 
-Here's some small website that serves as a repository for all my work and to comply with EU projects that require to have a website. 
+I'm a physicist with a background in Quantum Thermodynamics. Specialized in Machine Learning and applications to Quantum Physics and Biology.\
+Here's some small website that serves as a repository for all my work and to comply with EU projects that require to have a website.\
 On the left you can find my social profiles, above various sections with things that you might or might not find interesting.
 
 WARNING: This is a super beta version of the site for me to get used to this...
