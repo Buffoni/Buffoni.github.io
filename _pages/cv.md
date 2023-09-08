@@ -10,7 +10,7 @@ redirect_from:
 {% include base_path %}
 
 
-# Lorenzo Buffoni
+# Dr. Lorenzo Buffoni
 
 **Contact Information:**
 - Email: lorenzo.buffoni (AT) unifi (DOT) it
