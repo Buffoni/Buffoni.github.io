@@ -10,19 +10,11 @@ redirect_from:
 {% include base_path %}
 
 
-# Dr. Lorenzo Buffoni
-
-**Contact Information:**
-- Email: lorenzo.buffoni (AT) unifi (DOT) it
-- LinkedIn: [in://lorenzobuffoni](https://linkedin.com/in/lorenzobuffoni/)
-- GitHub: [git://Buffoni](https://github.com/Buffoni)
-- Google Scholar: [gs://NBReBZkAAAAJ](https://scholar.google.com/citations?hl=en&user=NBReBZkAAAAJ)
-
 ## EMPLOYMENT HISTORY
 
 - **Department of Physics and Astronomy, University of Florence**
   - Role: RTDa - Complex Systems Group
-  - Years: 2022 -
+  - Years: Ongoing
 
 - **Portuguese Quantum Institute**
   - Role: Research Fellow - Physics of Information and Quantum Technologies Group
@@ -80,7 +72,6 @@ redirect_from:
 - Awarded a microgrant from [UnitaryFund](https://unitary.fund/) for the open-source simulator [SQWalk](https://github.com/Buffoni/SQWalk) (2021).
 - Won a special prize in the international Machine Learning competition [Science4Cast](https://www.iarai.ac.at/science4cast/) (2021).
 - Awarded a grant from the [Blanceflor Foundation](https://blanceflor.se/) for a research project abroad (2022).
-- Co-PI of an exploratory project on Quantum Network Medicine granted by [FCT](https://www.fct.pt/) (2022).
 
 ## CONFERENCES & SCHOOLS
 
