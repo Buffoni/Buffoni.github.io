@@ -4,7 +4,6 @@ excerpt: "Webpage for the project ThermoQT funded from Next Generation EU, in th
 context of the PNRR <br/><img src='/images/quantum_comp.jpeg'>"
 collection: research
 ---
-<div style='text-align: justify;'>
 
 ## What is ThermoQT
 ThermoQT is a project funded from Next Generation EU, in the context of the Italian National Recovery and Resilience Plan, 
@@ -26,4 +25,3 @@ Follow us on [Twitter](https://twitter.com/ThermoQT) for updates!
 
 - Gherardini, S., Buffoni, L. and Defenu, N., 2023. Universal defects statistics with strong long-range interactions. arXiv preprint [arXiv:2305.11771](https://arxiv.org/abs/2305.11771).
 - Pratapsi, S.S., Buffoni, L. and Gherardini, S., 2023. Fidelity and energetics of driven quantum systems for quantum computing. arXiv preprint [arXiv:2305.05019](https://arxiv.org/abs/2305.05019).
-</div>
