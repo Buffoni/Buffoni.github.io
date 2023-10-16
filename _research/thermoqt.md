@@ -24,4 +24,5 @@ Follow us on [Twitter](https://twitter.com/ThermoQT) for updates!
 ## List of papers from the project
 
 - Gherardini, S., Buffoni, L. and Defenu, N., 2023. Universal defects statistics with strong long-range interactions. arXiv preprint [arXiv:2305.11771](https://arxiv.org/abs/2305.11771).
-- Pratapsi, S.S., Buffoni, L. and Gherardini, S., 2023. Fidelity and energetics of driven quantum systems for quantum computing. arXiv preprint [arXiv:2305.05019](https://arxiv.org/abs/2305.05019).
+- Pratapsi, S.S., Buffoni, L. and Gherardini, S., 2023. Time and energy bounds of driven quantum operations for quantum computing. arXiv preprint [arXiv:2305.05019](https://arxiv.org/abs/2305.05019).
+- Buffoni, L., Coghi, F. and Gherardini, S., 2023. Generalized Landauer bound from absolute irreversibility. arXiv preprint [arXiv:2310.05449](https://arxiv.org/abs/2310.05449).
