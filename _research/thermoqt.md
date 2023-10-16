@@ -12,6 +12,8 @@ particular scheme.
 ThermoQT is an individual project of Lorenzo Buffoni, however it benefits from numerous local and international collaborations
 as the coauthors of the papers reported below demonstrate. 
 
+Follow us on [Twitter](https://twitter.com/ThermoQT) for updates!
+
 ## What are its goals
 The ThermoQT project is a comprehensive initiative with the overarching goal of advancing our understanding of energy dissipation in quantum systems, developing tools for energetical benchmarking, and designing energy-efficient quantum devices and protocols.
 In the initial phase, the project focuses on characterizing the diverse sources of energy dissipation and irreversibility such as those related to quantum measurements and inherent energetic losses in driven quantum systems. In general, we aim to look at different types of quantum dynamics, which are relevant for quantum technologies, and characterize sources of dissipation, energy consumption and irreversibility from a fundamental standpoint.
@@ -19,7 +21,6 @@ Another objective of the project is to create practical tools, primarily in the 
 The last objective of ThermoQT is to leverage the accumulated knowledge and tools implemented to design quantum gates and protocols that operate with minimal energy consumption. These protocols could come at a tradeoff with respect to the quality of the result or to the time or resources employed for the protocol,  quantifying these tradeoffs between energy consumption and other metrics will be the ultimate factor that will make these energy efficient protocols useful for the broader community of quantum technologies.
 In summary, ThermoQT is a multifaceted project with the ultimate aim of enhancing our knowledge of quantum energy dissipation, providing valuable tools for benchmarking quantum technologies and contributing to the development of energy-efficient quantum devices and protocols. 
 
-Follow us on [Twitter](https://twitter.com/ThermoQT) for updates!
 
 ## List of papers from the project
 
