@@ -1,0 +1,64 @@
+# ---------------------------------------------------------------------------
+# Main profile. Everything on the home page and in the sidebar comes from here.
+# ---------------------------------------------------------------------------
+name: Lorenzo Buffoni
+short_name: L. Buffoni
+
+# Visual style of the whole site: classic | editorial | quantum | bento
+style: classic
+# Name variants used to highlight you in author lists
+author_aliases: ["Lorenzo Buffoni", "L. Buffoni", "Buffoni, L.", "Buffoni L."]
+
+position: Tenure-Track Researcher (RTT)
+group: Complex Systems Group
+department: Department of Physics and Astronomy
+institution: University of Florence
+address: Via G. Sansone 1, 50019 Sesto Fiorentino (FI), Italy
+email: ""            # e.g. lorenzo.buffoni@unifi.it — leave empty to hide
+photo: img/profile.jpg
+
+site_url: https://buffoni.github.io
+site_description: >-
+  Lorenzo Buffoni — tenure-track researcher at the University of Florence working on
+  machine learning and complex systems, and on quantum thermodynamics.
+
+ids:
+  orcid: 0000-0002-8191-3375
+  google_scholar: NBReBZkAAAAJ
+  github: Buffoni
+
+links:
+  - {label: Google Scholar, icon: scholar, url: "https://scholar.google.com/citations?user=NBReBZkAAAAJ&hl=en"}
+  - {label: ORCID, icon: orcid, url: "https://orcid.org/0000-0002-8191-3375"}
+  - {label: GitHub, icon: github, url: "https://github.com/Buffoni"}
+  - {label: LinkedIn, icon: linkedin, url: "https://www.linkedin.com/in/lorenzobuffoni"}
+  - {label: Web of Science, icon: wos, url: "https://www.webofscience.com/wos/author/record/1985437"}
+
+# Short intro shown at the top of the home page (Markdown allowed)
+bio: |
+  I am a tenure-track researcher in the **Complex Systems Group** of the Department of
+  Physics and Astronomy at the University of Florence. My main research is on
+  **machine learning** and **complex systems**: I design learning algorithms grounded in
+  dynamical systems and spectral methods, study how they learn and generalise, and apply
+  them to problems in physics, combinatorial optimization, biology and medicine.
+  A second line of my research is **quantum thermodynamics**, where I study the energetic
+  cost and irreversibility of quantum operations and technologies.
+
+  Before joining Florence I was a postdoctoral researcher at Instituto de
+  Telecomunicações (Lisbon) and the Portuguese Quantum Institute, a visiting researcher
+  at the Broad Institute of MIT and Harvard, and an external consultant for D-Wave Systems.
+  I teach machine learning, statistical mechanics and computational physics in the
+  Physics MSc and PhD programmes in Florence.
+
+interests:
+  - "Machine learning theory: spectral and dynamical-systems networks"
+  - Complex systems & combinatorial optimization
+  - Machine learning for physics, biology and medicine
+  - Quantum machine learning
+  - Quantum thermodynamics (secondary line)
+
+# Repositories to hide from the Software page
+software:
+  exclude: [Buffoni, Buffoni.github.io, Registration]
+  # repos to pin first, in this order
+  pinned: [spectral_learning, quantum-link-prediction, SQWalk, dwave_notebooks]

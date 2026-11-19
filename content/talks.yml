@@ -1,0 +1,19 @@
+# Recorded talks shown on /talks/.
+# Only `youtube` is required: the title (and channel) are fetched automatically
+# by the weekly update. Add `event`, `date`, `location` and `kind` by hand —
+# anything you write here wins over the fetched values.
+#
+#   - youtube: VIDEO_ID            # the part after watch?v=
+#     title: ""                    # optional, overrides the YouTube title
+#     event: "Conference name"
+#     date: 2025-06                # YYYY, YYYY-MM or YYYY-MM-DD
+#     location: "City / Online"
+#     kind: Invited talk           # Invited talk | Contributed talk | Seminar | Lecture | Outreach
+#     slides: talk.pdf             # optional, file in static/files/talks/ (or a full URL)
+#     paper: 10.1103/...           # optional DOI of the related paper
+
+talks:
+  - youtube: wdbqLDL__NA
+  - youtube: qCXsOpKg1IM
+  - youtube: wdh4ko--DZs
+  - youtube: uBEFGuZ7jNM

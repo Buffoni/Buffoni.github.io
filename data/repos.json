@@ -1,0 +1,82 @@
+[
+  {
+    "name": "spectral_learning",
+    "description": "Learning in spectral network space",
+    "url": "https://github.com/Buffoni/spectral_learning",
+    "homepage": "",
+    "language": "Python",
+    "stars": 14,
+    "updated": "2026-03-27",
+    "topics": []
+  },
+  {
+    "name": "SQWalk",
+    "description": "A simple quantum walk simulator in python",
+    "url": "https://github.com/Buffoni/SQWalk",
+    "homepage": "",
+    "language": "Python",
+    "stars": 12,
+    "updated": "2024-08-21",
+    "topics": []
+  },
+  {
+    "name": "dwave_notebooks",
+    "description": "Notebooks to experiment with D-Wave QPU",
+    "url": "https://github.com/Buffoni/dwave_notebooks",
+    "homepage": "",
+    "language": "Jupyter Notebook",
+    "stars": 8,
+    "updated": "2025-07-04",
+    "topics": []
+  },
+  {
+    "name": "quantum-link-prediction",
+    "description": "Working repository for the science4cast competition using quantum walks",
+    "url": "https://github.com/Buffoni/quantum-link-prediction",
+    "homepage": "",
+    "language": "Jupyter Notebook",
+    "stars": 5,
+    "updated": "2022-11-07",
+    "topics": []
+  },
+  {
+    "name": "landauer_parallel",
+    "description": "Parallelized sampling of Ising model",
+    "url": "https://github.com/Buffoni/landauer_parallel",
+    "homepage": "",
+    "language": "Python",
+    "stars": 1,
+    "updated": "2024-05-06",
+    "topics": []
+  },
+  {
+    "name": "quantum_maze_learning",
+    "description": "Reinforcement learning on a quantum maze",
+    "url": "https://github.com/Buffoni/quantum_maze_learning",
+    "homepage": "",
+    "language": "Python",
+    "stars": 1,
+    "updated": "2022-12-04",
+    "topics": []
+  },
+  {
+    "name": "Class-III-GNN",
+    "description": "",
+    "url": "https://github.com/Buffoni/Class-III-GNN",
+    "homepage": "",
+    "language": "Python",
+    "stars": 0,
+    "updated": "2025-12-09",
+    "topics": []
+  },
+  {
+    "name": "q-coop-erasure",
+    "description": "",
+    "url": "https://github.com/Buffoni/q-coop-erasure",
+    "homepage": "",
+    "language": "Python",
+    "stars": 0,
+    "updated": "2025-03-06",
+    "topics": []
+  }
+]

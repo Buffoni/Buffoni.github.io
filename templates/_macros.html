@@ -1,0 +1,27 @@
+{% macro pub(p, show_year=true) -%}
+<li class="pub" data-type="{{ p.type }}" data-year="{{ p.year }}" data-search="{{ (p.title ~ ' ' ~ (p.authors|join(' ')) ~ ' ' ~ (p.venue or '') ~ ' ' ~ p.year)|lower }}">
+  <div class="pub-title">{% if p.url %}<a href="{{ p.url }}">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}</div>
+  <div class="pub-authors">{{ p.authors | authors }}</div>
+  <div class="pub-meta">
+    {% if p.type == "preprint" %}<span class="tag tag-preprint">Preprint</span>{% elif p.type == "conference" %}<span class="tag tag-conf">Conference</span>{% elif p.type == "thesis" %}<span class="tag tag-thesis">Thesis</span>{% elif p.type == "patent" %}<span class="tag tag-patent">Patent</span>{% endif %}
+    <em>{{ p.venue }}</em>{% if show_year %} ({{ p.year }}){% endif %}
+    {% if p.note %}<span class="tag tag-note">{{ p.note }}</span>{% endif %}
+  </div>
+  <div class="pub-links">
+    {% if p.doi and not p.doi.startswith("10.48550") %}<a class="btn-s" href="https://doi.org/{{ p.doi }}">DOI</a>{% endif %}
+    {% if p.arxiv %}<a class="btn-s" href="https://arxiv.org/abs/{{ p.arxiv }}">arXiv</a>{% endif %}
+    {% if p.pdf %}<a class="btn-s" href="{{ p.pdf }}">PDF</a>{% endif %}
+    {% if p.code %}<a class="btn-s" href="{{ p.code }}">Code</a>{% endif %}
+    <button class="btn-s cite" data-bib="{{ p.bibtex }}">Cite</button>
+    {% if p.citations %}<span class="cites" title="Citations (OpenAlex)"><i class="fa-solid fa-quote-right"></i> {{ p.citations }}</span>{% endif %}
+  </div>
+</li>
+{%- endmacro %}
+
+{% macro paper_list(papers) -%}
+<ul class="mini-pubs">
+{% for p in papers %}
+  <li><a href="{{ p.url }}">{{ p.title }}</a> <span class="muted">— <em>{{ p.venue }}</em> ({{ p.year }})</span></li>
+{% endfor %}
+</ul>
+{%- endmacro %}

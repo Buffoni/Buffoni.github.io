@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head"><h1>Teaching</h1>
+<p class="lead">Course pages with slides, lecture notes, notebooks and datasets. Materials are free to use for study purposes.</p></section>
+{% for status, label in [("current","Current courses"),("past","Past teaching")] %}
+{% set cs = courses | selectattr("status","equalto",status) | list %}
+{% if cs %}
+<h2 class="section-title">{{ label }}</h2>
+<div class="course-grid">
+{% for c in cs %}
+  <a class="card course" href="/teaching/{{ c.slug }}/">
+    <h3>{{ c.title }}</h3>
+    <p class="muted small">{{ [c.degree, c.institution, c.year] | select | join(" · ") }}</p>
+    {% if c.summary %}<p>{{ c.summary }}</p>{% endif %}
+    <span class="course-foot">{% if c.n_materials %}<i class="fa-regular fa-folder-open"></i> {{ c.n_materials }} item{{ "s" if c.n_materials != 1 }}{% elif c.status == "current" %}<span class="muted">Materials coming soon</span>{% else %}<span class="muted">Course information</span>{% endif %} →</span>
+  </a>
+{% endfor %}
+</div>
+{% endif %}
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head"><h1>Software</h1>
+<p class="lead">Open-source code accompanying my research. The list is synced automatically from <a href="https://github.com/{{ profile.ids.github }}">GitHub</a>.</p></section>
+<div class="repo-grid">
+{% for r in repos %}
+  <a class="card repo" href="{{ r.url }}">
+    <h3><i class="fa-brands fa-github"></i> {{ r.name }}</h3>
+    <p>{{ r.description or "—" }}</p>
+    <div class="repo-meta">
+      {% if r.language %}<span><span class="dot lang-{{ r.language|lower|replace(' ','-') }}"></span>{{ r.language }}</span>{% endif %}
+      {% if r.stars %}<span><i class="fa-regular fa-star"></i> {{ r.stars }}</span>{% endif %}
+      <span class="muted">updated {{ r.updated | date }}</span>
+    </div>
+  </a>
+{% endfor %}
+{% for r in research.software_featured or [] %}
+  <a class="card repo" href="{{ r.url }}">
+    <h3><i class="fa-solid fa-cube"></i> {{ r.name }}</h3>
+    <p>{{ r.description }}</p>
+    <div class="repo-meta"><span class="muted">contributor</span></div>
+  </a>
+{% endfor %}
+</div>
+{% endblock %}

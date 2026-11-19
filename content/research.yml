@@ -1,0 +1,124 @@
+# Research lines and funded projects shown on /research/.
+# `dois` link a theme/project to entries of the publication list (auto-updated data).
+# Themes are grouped: `primary` lines are shown first, then `secondary` ones.
+
+intro: >-
+  My main research is on machine learning and complex systems: I build learning
+  algorithms grounded in dynamical systems and spectral methods, study how and why they
+  learn, and apply them to hard problems in physics, optimization, biology and medicine.
+  In parallel, I work on quantum thermodynamics, studying the energetic cost of quantum
+  technologies.
+
+groups:
+  primary:
+    title: Machine learning & complex systems
+    subtitle: Main research line
+  secondary:
+    title: Quantum thermodynamics
+    subtitle: Secondary research line
+
+themes:
+  - title: Learning with dynamical systems & spectral methods
+    group: primary
+    icon: fa-wave-square
+    text: >-
+      Neural networks can be trained in the space of eigenvalues and eigenvectors of
+      their transfer operators, or designed as dynamical systems whose attractors
+      encode the classes. This yields compact, interpretable models, principled
+      pruning, input-relevance estimates and robustness to noise and adversarial attacks.
+    dois:
+      - 10.1038/s41467-021-21481-0
+      - 10.1038/s41598-022-14805-7
+      - 10.1088/2632-2153/ad7f26
+      - 10.1038/s42005-026-02614-7
+      - 10.1088/2632-2153/ae0244
+      - 10.1162/neco_a_01744
+
+  - title: Complex systems, optimization & machine learning for science
+    group: primary
+    icon: fa-diagram-project
+    text: >-
+      Graph neural networks and physics-inspired algorithms for hard combinatorial
+      problems, network-based prediction of how science evolves, and machine learning
+      for spatial transcriptomics, cancer biology and clinical prediction.
+    dois:
+      - 10.1038/s42005-026-02606-7
+      - 10.48550/arxiv.2602.18419
+      - 10.1016/j.chaos.2026.118356
+      - 10.1038/s42256-023-00735-0
+      - 10.1038/s41592-021-01264-7
+      - 10.1126/science.abi8175
+      - 10.1111/ocr.70142
+
+  - title: Quantum machine learning
+    group: primary
+    icon: fa-atom
+    text: >-
+      Quantum annealers, quantum walks and generative diffusion models as resources for
+      learning, clustering and reinforcement learning, together with machine-learning
+      tools to characterise noise in quantum hardware.
+    dois:
+      - 10.1209/0295-5075/132/60004
+      - 10.1088/2632-2153/aba220
+      - 10.1007/s42484-022-00068-y
+      - 10.1007/s42484-022-00066-0
+      - 10.1007/s42484-022-00090-0
+      - 10.1088/2058-9565/ae8881
+
+  - title: Quantum thermodynamics & energetics of quantum technologies
+    group: secondary
+    icon: fa-temperature-half
+    text: >-
+      What is the minimal energetic cost of a quantum operation, and how does
+      irreversibility constrain the scaling of quantum computers? I study
+      measurement-driven refrigerators, Landauer-type bounds, fluctuation theorems,
+      quantum batteries and the thermodynamics of quantum annealers and gates.
+      This line was funded by the ThermoQT project (below).
+    dois:
+      - 10.1103/physrevlett.122.070603
+      - 10.1103/physrevlett.129.150602
+      - 10.1088/2058-9565/ab9755
+      - 10.22331/q-2023-03-23-961
+      - 10.1103/lffq-ylgz
+
+projects:
+  - title: ThermoQT
+    subtitle: Thermodynamics of Quantum Technologies
+    role: Principal Investigator
+    funding: >-
+      PNRR-MUR project (2022–2024), Next Generation EU — Italian National Recovery and
+      Resilience Plan, M4C2 investment 1.2. Awarded the Seal of Excellence as an MSCA proposal.
+    image: img/thermoqt.jpeg
+    links:
+      - {label: "@ThermoQT on X", url: "https://twitter.com/ThermoQT"}
+    text: |
+      ThermoQT aims to advance our understanding of **energy dissipation in quantum
+      systems**, to develop tools for the **energetic benchmarking** of quantum devices,
+      and to design **energy-efficient quantum gates and protocols**.
+
+      * **Characterising dissipation.** Identify the sources of energy dissipation and
+        irreversibility in quantum dynamics relevant for quantum technologies — from
+        quantum measurements to the intrinsic losses of driven quantum systems.
+      * **Benchmarking tools.** Develop open-source Python packages, integrated with
+        the existing quantum-simulation ecosystem, to quantify the energetic footprint
+        of quantum devices.
+      * **Energy-efficient protocols.** Use this knowledge to design low-energy quantum
+        gates and protocols, and quantify their trade-offs with fidelity, time and
+        resources.
+
+      ThermoQT is an individual project that benefits from many local and international
+      collaborations, as reflected by the co-authors of the papers below.
+    dois:
+      - 10.1103/physrevlett.133.113401
+      - 10.1103/physrevresearch.6.023296
+      - 10.1103/physreve.109.024138
+      - 10.1088/2058-9565/adc3bb
+      - 10.1103/lffq-ylgz
+      - 10.1088/2058-9565/ae8881
+      - 10.1088/2058-9565/aeb56b
+
+# Software not hosted on your GitHub account, shown on /software/
+software_featured:
+  - name: Tangram
+    description: Mapping single-cell transcriptomes to spatial data (Nature Methods 2021).
+    url: https://github.com/broadinstitute/Tangram
