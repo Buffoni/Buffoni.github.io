@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% set icons = {"slides":"fa-person-chalkboard","notes":"fa-file-lines","notebook":"fa-laptop-code","dataset":"fa-table","data":"fa-database","video":"fa-circle-play","exercise":"fa-pen-to-square","solution":"fa-square-check","exam":"fa-file-signature","code":"fa-code"} %}
+{% block content %}
+<nav class="crumbs"><a href="/teaching/">Teaching</a> / {{ course.title }}</nav>
+<section class="page-head">
+  <h1>{{ course.title }}</h1>
+  <dl class="facts">
+    {% for k, label in [("degree","Programme"),("institution","Institution"),("year","Academic year"),("semester","Semester"),("language","Language"),("hours","Workload"),("code","Code")] %}
+      {% if course[k] %}<div><dt>{{ label }}</dt><dd>{{ course[k] }}</dd></div>{% endif %}
+    {% endfor %}
+  </dl>
+  {% if course.links %}<p>{% for l in course.links %}<a class="btn-s" href="{{ l.url }}">{{ l.label }}</a> {% endfor %}</p>{% endif %}
+</section>
+
+{% if course.materials %}
+<section class="materials">
+  <h2 class="section-title">Materials</h2>
+  {% for sec in course.materials %}
+  <h3>{{ sec.section }}</h3>
+  <ul class="mat-list">
+    {% for it in sec["items"] %}
+    <li{% if it.missing %} class="missing"{% endif %}>
+      <i class="fa-solid {{ icons.get(it.kind, 'fa-file') }}" aria-hidden="true"></i>
+      <a href="{{ it.href }}"{% if it.file %} download{% endif %}>{{ it.title }}</a>
+      <span class="mat-meta">
+        {% if it.kind %}<span class="tag">{{ it.kind }}</span>{% endif %}
+        {% if it.ext and it.ext|length <= 7 %}<span class="muted">.{{ it.ext }}</span>{% endif %}
+        {% if it.size %}<span class="muted">{{ (it.size / 1024)|round(0)|int }} KB</span>{% endif %}
+        {% if it.date %}<span class="muted">{{ it.date | date("%d %b %Y") }}</span>{% endif %}
+        {% if it.missing %}<span class="warn" title="File not found in static/files/teaching/{{ course.slug }}/">missing file</span>{% endif %}
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if course.body %}<section class="prose">{{ course.body }}</section>
+{% elif not course.materials %}<p class="muted">Materials for this course will be published here.</p>{% endif %}
+{% endblock %}

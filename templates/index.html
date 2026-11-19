@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% from "_macros.html" import pub %}
+{% block content %}
+<section class="hero">
+  <img class="avatar" src="/{{ profile.photo }}" alt="Portrait of {{ profile.name }}" width="200" height="200">
+  <div class="hero-text">
+    <h1>{{ profile.name }}</h1>
+    <p class="role">{{ profile.position }} · {{ profile.group }}</p>
+    <p class="affil">{{ profile.department }}<br>{{ profile.institution }}</p>
+    <div class="social">
+      {% for l in profile.links %}<a href="{{ l.url }}" class="chip">{% include "_icon.html" %}<span>{{ l.label }}</span></a>{% endfor %}
+      {% if profile.email %}<a href="mailto:{{ profile.email }}" class="chip"><i class="fa-solid fa-envelope"></i><span>Email</span></a>{% endif %}
+    </div>
+  </div>
+</section>
+
+<div class="grid-2">
+  <section class="bio">
+    <h2 class="sr-only">About</h2>
+    {{ profile.bio | md }}
+  </section>
+  <aside class="side">
+    <div class="card">
+      <h3>Research interests</h3>
+      <ul class="interests">{% for i in profile.interests %}<li>{{ i }}</li>{% endfor %}</ul>
+    </div>
+    {% set m = metrics.scholar or metrics.openalex %}
+    {% if m %}
+    <div class="card metrics">
+      <div><strong>{{ pubs|length }}</strong><span>publications</span></div>
+      <div><strong>{{ "{:,}".format(m.citations) }}</strong><span>citations</span></div>
+      <div><strong>{{ m.h_index }}</strong><span>h-index</span></div>
+      <p class="muted small">Source: {{ "Google Scholar" if metrics.scholar else "OpenAlex" }}{% if m.updated %}, {{ m.updated | date("%b %Y") }}{% endif %}</p>
+    </div>
+    {% endif %}
+  </aside>
+</div>
+
+
+<section>
+  <div class="section-head"><h2 class="section-title">Latest publications</h2><a class="more" href="/publications/">All {{ pubs|length }} publications →</a></div>
+  <ul class="pubs">{% for p in pubs[:5] %}{{ pub(p) }}{% endfor %}</ul>
+</section>
+
+{% set sel = selected %}
+{% if sel %}
+<section>
+  <h2 class="section-title">Selected publications</h2>
+  <ul class="pubs">{% for p in sel %}{{ pub(p) }}{% endfor %}</ul>
+</section>
+{% endif %}
+
+<section class="cta-grid">
+  <a class="cta" href="/research/"><i class="fa-solid fa-flask"></i><strong>Research & projects</strong><span>Machine learning and complex systems; quantum thermodynamics.</span></a>
+  <a class="cta" href="/software/"><i class="fa-solid fa-code"></i><strong>Software</strong><span>Open-source code from my papers.</span></a>
+  <a class="cta" href="/teaching/"><i class="fa-solid fa-chalkboard-user"></i><strong>Teaching</strong><span>Courses, slides, notes and datasets.</span></a>
+</section>
+{% endblock %}

@@ -1,0 +1,50 @@
+# Manual control over the automatically generated publication list.
+# After editing, the next run of the "Update & deploy" workflow applies the changes
+# (or run `python scripts/update_data.py --only pubs` locally).
+
+# DOIs (or exact titles) to drop from the list
+hide:
+  - 10.1002/qute.202270081            # Front cover of Adv. Quantum Technol. (duplicate)
+  - 10.5281/zenodo.6326008            # Zenodo data deposit for the Science melanoma paper
+  - 10.5281/zenodo.23470560           # Zenodo software deposit (arXiv preprint kept)
+  - "A Path Towards Obtaining Quantum Advantage in Training Classical Deep Generative Models with Quantum Priors"  # APS abstract
+  - "Thermodynamic properties of stochastic quantum measurements"  # conference abstract
+
+# Papers that are yours but are not linked to your ORCID in OpenAlex
+add_dois:
+  - 10.1038/s41467-021-21481-0        # Machine learning in spectral domain (Nat. Commun. 2021)
+
+# Shown on the home page under "Selected publications", in this order
+selected:
+  - 10.1038/s41467-021-21481-0        # ML in spectral domain (Nat. Commun.)
+  - 10.1038/s42005-026-02614-7        # Spectral input relevance (Commun. Phys.)
+  - 10.1088/2632-2153/ad7f26          # SA-nODE (Mach. Learn.: Sci. Technol.)
+  - 10.1038/s42005-026-02606-7        # Maximum-clique review (Commun. Phys.)
+  - 10.1038/s42256-023-00735-0        # Forecasting the future of AI (Nat. Mach. Intell.)
+  - 10.1038/s41592-021-01264-7        # Tangram (Nat. Methods)
+  - 10.1103/physrevlett.129.150602    # Third law & scaling of quantum computers (PRL)
+  - 10.1103/physrevlett.122.070603    # Quantum measurement cooling (PRL)
+
+# Per-DOI tweaks. Any field can be overridden: venue, title, pdf, code, note...
+overrides:
+  10.1038/s41592-021-01264-7:
+    code: https://github.com/broadinstitute/Tangram
+  10.1002/qute.202100140:
+    note: Front cover
+  10.48550/arxiv.2212.02465:
+    venue: arXiv preprint
+
+# Entries that are not indexed anywhere (talks proceedings, book chapters…). Example:
+manual:
+  - title: "Deep learning and alignment of spatially-resolved whole transcriptomes of single cells"
+    authors: ["Aviv Regev", "Tommaso Biancalani", "Gabriele Scalia", "Lorenzo Buffoni"]
+    year: 2022
+    date: "2022-03-03"
+    venue: "U.S. Patent Application 17/459,368"
+    type: patent
+#  - title: "My paper"
+#    authors: ["Lorenzo Buffoni", "A. Coauthor"]
+#    year: 2026
+#    venue: "Some Journal"
+#    type: article          # article | conference | preprint | thesis | chapter
+#    url: https://...

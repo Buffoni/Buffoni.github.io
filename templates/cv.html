@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head cv-head">
+  <h1>Curriculum Vitae</h1>
+  {% if has_cv_pdf %}<a class="btn" href="/files/cv.pdf"><i class="fa-solid fa-file-arrow-down"></i> Download PDF</a>{% endif %}
+</section>
+{% set m = metrics.scholar or metrics.openalex %}
+<section class="cv-metrics card">
+  <div><strong>{{ counts.article + counts.conference }}</strong><span>peer-reviewed papers</span></div>
+  <div><strong>{{ first_author }}</strong><span>first-author</span></div>
+  <div><strong>{{ counts.preprint }}</strong><span>preprints</span></div>
+  {% if m %}<div><strong>{{ "{:,}".format(m.citations) }}</strong><span>citations</span></div>
+  <div><strong>{{ m.h_index }}</strong><span>h-index</span></div>{% endif %}
+</section>
+<section class="prose cv">{{ cv }}
+<h2>Publications</h2>
+<p>The complete, automatically updated list is on the <a href="/publications/">publications page</a>.</p>
+</section>
+{% endblock %}

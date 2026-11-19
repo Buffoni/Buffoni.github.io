@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% from "_macros.html" import pub %}
+{% block content %}
+<section class="page-head">
+  <h1>Publications</h1>
+  <p class="lead">{{ counts.article }} journal articles, {{ counts.conference }} conference papers and {{ counts.preprint }} preprints{% if counts.patent %}, plus {{ counts.patent }} patent application{{ "s" if counts.patent > 1 }}{% endif %}.
+  Also on <a href="{{ profile.links[0].url }}">Google Scholar</a> and <a href="https://orcid.org/{{ profile.ids.orcid }}">ORCID</a>.
+  Download everything as <a href="/publications.bib">BibTeX</a>.</p>
+</section>
+
+<div class="toolbar" role="search">
+  <div class="filters" role="group" aria-label="Filter by type">
+    <button class="filter active" data-filter="all">All <span>{{ pubs|length }}</span></button>
+    <button class="filter" data-filter="article">Journal <span>{{ counts.article }}</span></button>
+    {% if counts.conference %}<button class="filter" data-filter="conference">Conference <span>{{ counts.conference }}</span></button>{% endif %}
+    {% if counts.preprint %}<button class="filter" data-filter="preprint">Preprints <span>{{ counts.preprint }}</span></button>{% endif %}
+    {% if counts.patent %}<button class="filter" data-filter="patent">Patents <span>{{ counts.patent }}</span></button>{% endif %}
+  </div>
+  <input type="search" id="pub-search" placeholder="Search title, author, journal…" aria-label="Search publications">
+</div>
+<p id="no-results" class="muted" hidden>No publications match your search.</p>
+
+{% for y in years %}
+<section class="year-group" data-year="{{ y }}">
+  <h2 class="year">{{ y }}</h2>
+  <ul class="pubs">
+  {% for p in pubs if p.year == y %}{{ pub(p, show_year=false) }}{% endfor %}
+  </ul>
+</section>
+{% endfor %}
+{% endblock %}

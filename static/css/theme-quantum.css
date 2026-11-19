@@ -1,0 +1,72 @@
+/* =====================================================================
+   QUANTUM — dark "lab at night" look: deep navy, glowing cyan/violet
+   gradients, glass cards, animated complex-network hero.
+   ===================================================================== */
+:root[data-style="quantum"], :root[data-style="quantum"][data-theme] {
+  --bg: #070b16; --bg-soft: #0d1324; --card: rgba(20, 28, 52, .55); --text: #e6ecff; --muted: #93a0c4;
+  --border: rgba(140, 160, 255, .16); --accent: #6ee7ff; --accent-soft: rgba(110, 231, 255, .1); --accent-2: #b794ff;
+  --shadow: 0 10px 40px rgba(0, 0, 0, .35); --radius: 16px; color-scheme: dark;
+}
+:root[data-style="quantum"][data-theme="light"] {
+  --bg: #f5f7ff; --bg-soft: #eceffd; --card: rgba(255,255,255,.75); --text: #12182e; --muted: #56618a;
+  --border: rgba(60, 80, 180, .15); --accent: #2448d8; --accent-soft: rgba(36,72,216,.08); --accent-2: #7b3fe4; color-scheme: light;
+}
+[data-style="quantum"] body {
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(183, 148, 255, .18), transparent 60%),
+    radial-gradient(800px 500px at 0% 10%, rgba(110, 231, 255, .12), transparent 60%),
+    var(--bg);
+}
+#bg-net { position: absolute; top: 0; left: 0; width: 100%; height: 640px; z-index: 0; pointer-events: none;
+  -webkit-mask-image: linear-gradient(#000 55%, transparent); mask-image: linear-gradient(#000 55%, transparent); }
+[data-style="quantum"] main, [data-style="quantum"] .site-footer { position: relative; z-index: 1; }
+[data-style="quantum"] .site-header { background: rgba(7, 11, 22, .55); border-bottom-color: var(--border); z-index: 20; }
+[data-style="quantum"][data-theme="light"] .site-header { background: rgba(245,247,255,.7); }
+[data-style="quantum"] .brand { background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+[data-style="quantum"] .nav nav a[aria-current="page"] { background: var(--accent-soft); color: var(--accent); box-shadow: inset 0 0 0 1px rgba(110,231,255,.25); }
+
+/* hero */
+[data-style="quantum"] .page-home main { padding-top: 5rem; }
+[data-style="quantum"] .hero { min-height: 340px; margin-bottom: 4rem; }
+[data-style="quantum"] .hero h1 { font-family: var(--sans); font-weight: 700; font-size: clamp(2.6rem, 6vw, 4.4rem); letter-spacing: -.035em; line-height: 1.02;
+  background: linear-gradient(100deg, #fff 20%, var(--accent) 60%, var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+[data-style="quantum"][data-theme="light"] .hero h1 { background-image: linear-gradient(100deg, var(--text) 20%, var(--accent) 60%, var(--accent-2)); }
+[data-style="quantum"] .avatar { width: 190px; height: 190px; box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px transparent, 0 0 50px rgba(110,231,255,.35);
+  background: linear-gradient(var(--bg), var(--bg)) padding-box, linear-gradient(135deg, var(--accent), var(--accent-2)) border-box; border: 3px solid transparent; }
+[data-style="quantum"] .role { color: var(--accent-2); font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; font-size: .9rem; letter-spacing: .02em; }
+[data-style="quantum"] .role::before { content: "> "; color: var(--accent); }
+[data-style="quantum"] .chip { background: var(--card); backdrop-filter: blur(8px); }
+[data-style="quantum"] .chip:hover { box-shadow: 0 0 20px rgba(110,231,255,.25); }
+
+/* glass cards */
+[data-style="quantum"] .card, [data-style="quantum"] .cta, [data-style="quantum"] .mat-list li {
+  background: var(--card); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--border); }
+[data-style="quantum"] .repo:hover, [data-style="quantum"] .course:hover, [data-style="quantum"] .cta:hover {
+  border-color: rgba(110,231,255,.5); box-shadow: 0 0 0 1px rgba(110,231,255,.2), 0 12px 40px rgba(110,231,255,.12); }
+[data-style="quantum"] .metrics strong, [data-style="quantum"] .cv-metrics strong {
+  font-family: var(--sans); font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+[data-style="quantum"] h1, [data-style="quantum"] h2, [data-style="quantum"] h3 { font-family: var(--sans); letter-spacing: -.02em; }
+[data-style="quantum"] .section-title { border-image: linear-gradient(90deg, var(--accent), var(--accent-2), transparent) 1; border-bottom-width: 1px; border-bottom-style: solid; }
+[data-style="quantum"] .section-head { border-image: linear-gradient(90deg, var(--accent), var(--accent-2), transparent) 1; }
+[data-style="quantum"] .section-head .section-title { border: 0; }
+
+/* publications as glowing timeline */
+[data-style="quantum"] .pubs { position: relative; }
+[data-style="quantum"] .pub { position: relative; padding-left: 1.6rem; border-bottom-color: var(--border); }
+[data-style="quantum"] .pub::before { content: ""; position: absolute; left: 0; top: 1.45rem; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+[data-style="quantum"] .pub[data-type="preprint"]::before { background: var(--accent-2); box-shadow: 0 0 12px var(--accent-2); }
+[data-style="quantum"] .pub-title { font-family: var(--sans); font-weight: 600; font-size: 1.04rem; letter-spacing: -.01em; }
+[data-style="quantum"] .me { color: var(--accent); text-decoration: none; }
+[data-style="quantum"] .btn-s { border-radius: 999px; background: rgba(255,255,255,.03); }
+[data-style="quantum"] .btn-s:hover { box-shadow: 0 0 14px rgba(110,231,255,.3); }
+[data-style="quantum"] .toolbar { background: rgba(7, 11, 22, .8); backdrop-filter: blur(10px); }
+[data-style="quantum"][data-theme="light"] .toolbar { background: rgba(245,247,255,.85); }
+[data-style="quantum"] .filter { background: var(--card); }
+[data-style="quantum"] .filter.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #070b16; border-color: transparent; }
+[data-style="quantum"] #pub-search { background: var(--card); }
+[data-style="quantum"] .year { font-family: ui-monospace, Menlo, monospace; font-weight: 500; }
+[data-style="quantum"] .tag { background: var(--accent-soft); }
+[data-style="quantum"] .btn { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #070b16; }
+[data-style="quantum"] .site-footer { background: rgba(0,0,0,.25); border-top-color: var(--border); }
+[data-style="quantum"] .theme-toggle { display: none; }

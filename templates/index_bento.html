@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% from "_macros.html" import pub %}
+{% block content %}
+{% set m = metrics.scholar or metrics.openalex %}
+{% set latest = pubs | selectattr("type","equalto","article") | first %}
+{% set proj = (research.projects or [None])[0] %}
+<section class="bento">
+  <div class="tile t-profile">
+    <img class="avatar" src="/{{ profile.photo }}" alt="Portrait of {{ profile.name }}" width="200" height="200">
+    <div>
+      <p class="eyebrow">{{ profile.position }} · {{ profile.institution }}</p>
+      <h1>{{ profile.name }}</h1>
+      <p class="tagline">Machine learning · Complex systems · Quantum thermodynamics</p>
+      <div class="social">
+        {% for l in profile.links %}<a href="{{ l.url }}" class="icon-btn" title="{{ l.label }}" aria-label="{{ l.label }}">{% include "_icon.html" %}</a>{% endfor %}
+        {% if profile.email %}<a href="mailto:{{ profile.email }}" class="icon-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>{% endif %}
+      </div>
+    </div>
+  </div>
+
+  {% if m %}
+  <div class="tile t-stat s1"><strong data-count="{{ pubs|length }}">{{ pubs|length }}</strong><span>publications</span></div>
+  <div class="tile t-stat s2"><strong data-count="{{ m.citations }}">{{ "{:,}".format(m.citations) }}</strong><span>citations</span></div>
+  <div class="tile t-stat s3"><strong data-count="{{ m.h_index }}">{{ m.h_index }}</strong><span>h-index</span></div>
+  {% endif %}
+
+  <div class="tile t-bio">
+    <p class="eyebrow">About</p>
+    {{ profile.bio | md }}
+  </div>
+
+  {% if latest %}
+  <a class="tile t-latest" href="{{ latest.url }}">
+    <p class="eyebrow"><span class="pulse"></span> Latest paper</p>
+    <h3>{{ latest.title }}</h3>
+    <p class="muted"><em>{{ latest.venue }}</em> · {{ latest.year }}</p>
+    <span class="arrow">Read →</span>
+  </a>
+  {% endif %}
+
+  <div class="tile t-interests">
+    <p class="eyebrow">Research interests</p>
+    <ul>{% for i in profile.interests %}<li>{{ i }}</li>{% endfor %}</ul>
+  </div>
+
+  {% if proj %}
+  <a class="tile t-project" href="/research/#{{ proj.title|lower|replace(' ','-') }}" style="--img:url('/{{ proj.image }}')">
+    <div class="overlay">
+      <p class="eyebrow">Project · {{ proj.role }}</p>
+      <h3>{{ proj.title }}</h3>
+      <p>{{ proj.subtitle }}</p>
+    </div>
+  </a>
+  {% endif %}
+
+  <a class="tile t-teach" href="/teaching/">
+    <i class="fa-solid fa-chalkboard-user"></i>
+    <h3>Teaching</h3><p>Slides, notes &amp; datasets</p>
+  </a>
+  <a class="tile t-code" href="/software/">
+    <i class="fa-solid fa-code"></i>
+    <h3>Software</h3><p>{{ repos|length }} open-source repositories</p>
+  </a>
+</section>
+
+
+<section>
+  <div class="section-head"><h2 class="section-title">Recent publications</h2><a class="more" href="/publications/">All {{ pubs|length }} →</a></div>
+  <ul class="pubs pubs-cards">{% for p in pubs[:6] %}{{ pub(p) }}{% endfor %}</ul>
+</section>
+
+{% set sel = selected %}
+{% if sel %}
+<section>
+  <h2 class="section-title">Selected publications</h2>
+  <ul class="pubs pubs-cards">{% for p in sel %}{{ pub(p) }}{% endfor %}</ul>
+</section>
+{% endif %}
+{% endblock %}

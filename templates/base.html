@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-style="{{ style }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% set page_title = (title ~ " · " ~ profile.name) if title else (profile.name ~ " · " ~ profile.position ~ ", " ~ profile.institution) %}
+  <title>{{ page_title }}</title>
+  <meta name="description" content="{{ description or profile.site_description | trim }}">
+  <meta name="author" content="{{ profile.name }}">
+  <link rel="canonical" href="{{ profile.site_url }}{{ path }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:description" content="{{ description or profile.site_description | trim }}">
+  <meta property="og:url" content="{{ profile.site_url }}{{ path }}">
+  <meta property="og:image" content="{{ profile.site_url }}/{{ profile.photo }}">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/vendor/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="/vendor/fontawesome/css/fontawesome.min.css">
+  <link rel="stylesheet" href="/vendor/fontawesome/css/solid.min.css">
+  <link rel="stylesheet" href="/vendor/fontawesome/css/regular.min.css">
+  <link rel="stylesheet" href="/vendor/fontawesome/css/brands.min.css">
+  <link rel="stylesheet" href="/vendor/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  {% if style != "classic" %}<link rel="stylesheet" href="/css/theme-{{ style }}.css">{% endif %}
+  <script>
+    (function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}})();
+  </script>
+  <script type="application/ld+json">
+  {{ {"@context":"https://schema.org","@type":"Person","name":profile.name,"jobTitle":profile.position,
+      "affiliation":{"@type":"CollegeOrUniversity","name":profile.institution},
+      "url":profile.site_url,"image":profile.site_url ~ "/" ~ profile.photo,
+      "sameAs":profile.links|map(attribute="url")|list} | tojson }}
+  </script>
+</head>
+<body class="page-{{ active or 'none' }}">
+  {% if style == "quantum" and active == "home" %}<canvas id="bg-net" aria-hidden="true"></canvas>{% endif %}
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="/">{{ profile.name }}</a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      <nav>
+        <ul>
+          {% for key, label, href in [("home","About","/"),("publications","Publications","/publications/"),("research","Research","/research/"),("talks","Talks","/talks/"),("software","Software","/software/"),("teaching","Teaching","/teaching/"),("cv","CV","/cv/")] %}
+          <li><a href="{{ href }}"{% if active == key %} aria-current="page"{% endif %}>{{ label }}</a></li>
+          {% endfor %}
+          <li><button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><i class="fa-solid fa-circle-half-stroke"></i></button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        © {{ build_year }} {{ profile.name }} · {{ profile.department }}, {{ profile.institution }}
+      </div>
+      <div class="footer-links">
+        {% for l in profile.links %}<a href="{{ l.url }}" title="{{ l.label }}" aria-label="{{ l.label }}">{% include "_icon.html" %}</a>{% endfor %}
+      </div>
+    </div>
+    {% if updated %}<div class="wrap updated">Publication data last refreshed {{ updated | date("%d %B %Y") }} from OpenAlex.</div>{% endif %}
+  </footer>
+  <script src="/js/main.js" defer></script>
+  {% if style == "quantum" %}<script src="/js/network-bg.js" defer></script>{% endif %}
+</body>
+</html>

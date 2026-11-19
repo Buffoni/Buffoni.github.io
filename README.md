@@ -1,31 +1,81 @@
-A Github Pages template for academic websites. This was forked (then detached) by [Stuart Geiger](https://github.com/staeiou) from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/), which is © 2016 Michael Rose and released under the MIT License. See LICENSE.md.
+# buffoni.github.io
 
-I think I've got things running smoothly and fixed some major bugs, but feel free to file issues or make pull requests if you want to improve the generic template / theme.
+Personal academic website of Lorenzo Buffoni — <https://buffoni.github.io>
 
-### Note: if you are using this repo and now get a notification about a security vulnerability, delete the Gemfile.lock file. 
+A small, dependency-light static site: content lives in YAML/Markdown, a Python script
+builds plain HTML, and a GitHub Action **refreshes publications and repositories every
+Monday** and redeploys.
 
-# Instructions
+## One-time setup
 
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Fork [this repository](https://github.com/academicpages/academicpages.github.io) by clicking the "fork" button in the top right. 
-1. Go to the repository's settings (rightmost item in the tabs that start with "Code", should be below "Unwatch"). Rename the repository "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and create content & metadata (see below -- also see [this set of diffs](http://archive.is/3TPas) showing what files were changed to set up [an example site](https://getorg-testacct.github.io) for a user with the username "getorg-testacct")
-1. Upload any files (like PDFs, .zip files, etc.) to the files/ directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
-1. (Optional) Use the Jupyter notebooks or python scripts in the `markdown_generator` folder to generate markdown files for publications and talks from a TSV file.
+1. Replace the contents of the `Buffoni.github.io` repository with this folder and push to `main`.
+2. In the repository go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
+3. Open the **Actions** tab → *Update data & deploy site* → **Run workflow** to do the first refresh.
 
-See more info at https://academicpages.github.io/
+From then on every push redeploys the site, and the weekly run keeps publications,
+citation counts and the software list current.
 
-## To run locally (not on GitHub Pages, to serve on your own computer)
+## Where things live
 
-1. Clone the repository and made updates as detailed above
-1. Make sure you have ruby-dev, bundler, and nodejs installed: `sudo apt install ruby-dev ruby-bundler nodejs`
-1. Run `bundle clean` to clean up the directory (no need to run `--force`)
-1. Run `bundle install` to install ruby dependencies. If you get errors, delete Gemfile.lock and try again.
-1. Run `bundle exec jekyll liveserve` to generate the HTML and serve it from `localhost:4000` the local server will automatically rebuild and refresh the pages on change.
+| What | File |
+|---|---|
+| Name, bio, links, research interests | `content/profile.yml` |
+| Research themes and projects (ThermoQT…) | `content/research.yml` |
+| Recorded talks (YouTube) | `content/talks.yml` (slides in `static/files/talks/`) |
+| CV | `content/cv.md` (put a PDF at `static/files/cv.pdf` to add a download button) |
+| Teaching pages | `content/teaching/*.md` |
+| Teaching files (slides, notes, data…) | `static/files/teaching/<course-slug>/` |
+| Publication tweaks (hide, add, select, override) | `data/publications_extra.yml` |
+| Auto-generated data — **don't edit by hand** | `data/publications.json`, `data/repos.json`, `data/metrics.json` |
+| Look & feel | `templates/*.html`, `static/css/style.css` |
 
-# Changelog -- bugfixes and enhancements
+## Adding teaching material
 
-There is one logistical issue with a ready-to-fork template theme like academic pages that makes it a little tricky to get bug fixes and updates to the core theme. If you fork this repository, customize it, then pull again, you'll probably get merge conflicts. If you want to save your various .yml configuration files and markdown files, you can delete the repository and fork it again. Or you can manually patch. 
+1. Copy `content/teaching/_TEMPLATE.md` to e.g. `content/teaching/2026-machine-learning.md`.
+2. Fill in the header (title, programme, year, `status: current` or `past`).
+3. Put the files in `static/files/teaching/2026-machine-learning/` and list them under
+   `materials:` with `file: name.pdf` (or `url:` for Colab/YouTube/Moodle links).
+4. Commit and push — the page appears at `/teaching/2026-machine-learning/`.
 
-To support this, all changes to the underlying code appear as a closed issue with the tag 'code change' -- get the list [here](https://github.com/academicpages/academicpages.github.io/issues?q=is%3Aclosed%20is%3Aissue%20label%3A%22code%20change%22%20). Each issue thread includes a comment linking to the single commit or a diff across multiple commits, so those with forked repositories can easily identify what they need to patch.
+Files you list but forget to upload are flagged as *missing file* on the page.
+You can do all of this from the GitHub web interface (*Add file → Upload files*).
+
+## Adding a talk
+
+Add a line with the video ID to `content/talks.yml` (the part after `watch?v=`), optionally
+with `event`, `date`, `location`, `kind`, `slides` and `paper`. The title is fetched from
+YouTube automatically when the site builds. Videos play inside the page only after the
+visitor clicks, using YouTube's privacy-enhanced (no-cookie) player.
+
+## Publications: how the auto-update works
+
+`scripts/update_data.py` queries **OpenAlex** by your ORCID (`0000-0002-8191-3375`) for the
+full list, merges duplicates (an arXiv preprint is dropped once the journal version exists),
+and applies `data/publications_extra.yml`:
+
+- `hide` — DOIs/titles to drop (front covers, data deposits, abstracts…)
+- `add_dois` — your papers that OpenAlex has not linked to your ORCID
+  (e.g. *Machine learning in spectral domain*, Nat. Commun. 2021)
+- `selected` — what appears under *Selected publications* on the home page
+- `overrides` — fix a venue name, add a `code:`/`pdf:` link or a `note:`
+
+**Google Scholar** has no API and blocks most automated requests, so it is used only
+(best effort) for the headline citation/h-index numbers; when it can't be reached the
+site shows the OpenAlex figures. Keeping your ORCID profile up to date (it can auto-sync
+from Crossref and arXiv) is the most reliable way to keep the list complete.
+
+## Changing the look
+
+Set `style:` in `content/profile.yml` to one of `classic`, `editorial`, `quantum`, `bento`
+and push. Preview any style locally with `python build.py --style quantum --serve`.
+
+## Local preview
+
+```bash
+pip install -r requirements.txt
+python scripts/update_data.py   # optional: refresh data
+python build.py --serve         # http://localhost:8000
+```
+
+The publication list is also exported at `/publications.bib` and `/publications.json`.
+Fonts (Inter, Source Serif 4 — OFL) and icons (Font Awesome Free, Academicons) are self-hosted under `static/vendor/`.

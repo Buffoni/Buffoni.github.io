@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <h1>Talks</h1>
+  <p class="lead">Recorded seminars and conference talks. A full list of presentations is in my <a href="/cv/#talks">CV</a>.</p>
+</section>
+
+<div class="talk-grid">
+{% for t in talks %}
+  <article class="card talk">
+    {% if t.youtube %}
+    <div class="video" data-yt="{{ t.youtube }}">
+      <button class="video-facade" aria-label="Play video{% if t.title %}: {{ t.title }}{% endif %}"
+              style="background-image:url('https://i.ytimg.com/vi/{{ t.youtube }}/hqdefault.jpg')">
+        <span class="play"><i class="fa-solid fa-play"></i></span>
+      </button>
+    </div>
+    {% endif %}
+    <div class="talk-body">
+      {% if t.kind %}<span class="tag">{{ t.kind }}</span>{% endif %}
+      <h2>{{ t.title or "Recorded talk" }}</h2>
+      {% set where = [t.event, t.location] | select | join(" · ") %}
+      {% if where or t.date %}<p class="talk-meta">{{ where }}{% if where and t.date %} · {% endif %}{% if t.date %}<time>{{ t.date | date }}</time>{% endif %}</p>
+      {% elif t.channel %}<p class="talk-meta">{{ t.channel }}</p>{% endif %}
+      {% if t.abstract %}<p class="small muted">{{ t.abstract }}</p>{% endif %}
+      <div class="pub-links">
+        {% if t.youtube %}<a class="btn-s" href="https://www.youtube.com/watch?v={{ t.youtube }}"><i class="fa-brands fa-youtube"></i> YouTube</a>{% endif %}
+        {% if t.slides %}<a class="btn-s" href="{{ t.slides }}">Slides</a>{% endif %}
+        {% if t.paper_obj %}<a class="btn-s" href="{{ t.paper_obj.url }}" title="{{ t.paper_obj.title }}">Paper</a>
+        {% elif t.paper %}<a class="btn-s" href="https://doi.org/{{ t.paper }}">Paper</a>{% endif %}
+      </div>
+    </div>
+  </article>
+{% endfor %}
+</div>
+{% endblock %}

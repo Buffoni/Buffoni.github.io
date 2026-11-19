@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% from "_macros.html" import paper_list %}
+{% block content %}
+<section class="page-head"><h1>Research</h1><p class="lead">{{ research.intro }}</p></section>
+
+{% set groups = research.groups or {} %}
+{% for gkey in ["primary", "secondary"] %}
+{% set ts = research.themes | selectattr("group", "equalto", gkey) | list %}
+{% if ts %}
+<section class="theme-group">
+  {% if groups[gkey] %}<div class="group-head"><p class="eyebrow-s">{{ groups[gkey].subtitle }}</p><h2 class="section-title">{{ groups[gkey].title }}</h2></div>{% endif %}
+  <div class="themes{% if gkey == 'secondary' %} themes-secondary{% endif %}">
+  {% for t in ts %}
+    <article class="card theme">
+      <h3><i class="fa-solid {{ t.icon or 'fa-circle' }}"></i> {{ t.title }}</h3>
+      <p>{{ t.text }}</p>
+      {% if t.papers %}<details><summary>Key papers ({{ t.papers|length }})</summary>{{ paper_list(t.papers) }}</details>{% endif %}
+    </article>
+  {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endfor %}
+{% set ungrouped = research.themes | rejectattr("group") | list %}
+{% if ungrouped %}<section class="themes">{% for t in ungrouped %}<article class="card theme"><h3>{{ t.title }}</h3><p>{{ t.text }}</p>{% if t.papers %}<details><summary>Key papers ({{ t.papers|length }})</summary>{{ paper_list(t.papers) }}</details>{% endif %}</article>{% endfor %}</section>{% endif %}
+
+{% if research.projects %}
+<section class="theme-group"><h2 class="section-title">Funded projects</h2></section>
+{% for p in research.projects %}
+<article class="project card" id="{{ p.title|lower|replace(' ','-') }}">
+  {% if p.image %}<img src="/{{ p.image }}" alt="" class="project-img">{% endif %}
+  <div class="project-body">
+    <h3>{{ p.title }}{% if p.subtitle %} <span class="muted">— {{ p.subtitle }}</span>{% endif %}</h3>
+    {% if p.role %}<p class="tag-line"><span class="tag">{{ p.role }}</span></p>{% endif %}
+    {% if p.funding %}<p class="small muted">{{ p.funding }}</p>{% endif %}
+    {{ p.text | md }}
+    {% if p.links %}<p>{% for l in p.links %}<a class="btn-s" href="{{ l.url }}">{{ l.label }}</a> {% endfor %}</p>{% endif %}
+    {% if p.papers %}<h4>Publications from the project</h4>{{ paper_list(p.papers) }}{% endif %}
+  </div>
+</article>
+{% endfor %}
+{% endif %}
+{% endblock %}
